@@ -35,4 +35,7 @@ public class BrickManager : MonoBehaviour
         return Random.Range(0, sprites.Length);
     }
     
+    int GetNbBricksLeft(){
+        return nbBricksLeft;
+    }
 }
