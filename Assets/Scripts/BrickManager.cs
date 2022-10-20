@@ -8,19 +8,18 @@ public class BrickManager : MonoBehaviour
     [SerializeField] private int columns = 5;
     [SerializeField] private Brick brick;
     [HideInInspector]
-    public int nbBricksLeft;
     [SerializeField] private Transform origin;
     [SerializeField] private Sprite[] sprites;
 
     void Start()
     {
-        nbBricksLeft = rows * columns;
         LoadBricks();
     }
 
-    void LoadBricks(){
+    public void LoadBricks(){
+        GameManager.Instance.SetNbBricksTotal(rows * columns);
+        GameManager.Instance.ResetNbBricksLeft();
         Vector2 size = brick.GetComponent<Renderer>().bounds.size;
-        Debug.Log(size);
         for (int i = 0; i < rows;i++){
             for (int j = 0; j < columns; j++){
                 Vector2 position = new Vector2(origin.position.x + (size.x / 2f) + (j * (size.x + 0.05f)), origin.position.y - (size.y / 2f) - (i * (size.y + 0.05f)));
@@ -35,7 +34,4 @@ public class BrickManager : MonoBehaviour
         return Random.Range(0, sprites.Length);
     }
     
-    int GetNbBricksLeft(){
-        return nbBricksLeft;
-    }
 }

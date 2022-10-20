@@ -9,6 +9,7 @@ public class Brick : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col){
         GameManager.Instance.SetScore(GameManager.Instance.GetScore()+score);
+        GameManager.Instance.RemoveBrick();
         Destroy(gameObject);
     }
 }

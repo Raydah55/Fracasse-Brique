@@ -533,6 +533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 852881167}
+  brickManager: {fileID: 1218176342}
 --- !u!4 &958990310
 Transform:
   m_ObjectHideFlags: 0
@@ -835,7 +836,6 @@ MonoBehaviour:
   rows: 4
   columns: 9
   brick: {fileID: -5172616385811604962, guid: f3345ffd7b3589c48af9d9fb0addcfe0, type: 3}
-  nbBricksLeft: 0
   origin: {fileID: 1218176341}
   sprites:
   - {fileID: 21300000, guid: e10286d42c1f694448e8f56e5eab7944, type: 3}
