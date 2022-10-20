@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
+    public int score = 5000;
+    
+
     void OnCollisionEnter2D(Collision2D col){
-            Destroy(gameObject);
+        GameManager.Instance.SetScore(GameManager.Instance.GetScore()+score);
+        Destroy(gameObject);
     }
 }
