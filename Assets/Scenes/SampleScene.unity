@@ -232,7 +232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218176340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.97, y: 4.63, z: -0.02564384}
+  m_LocalPosition: {x: -8.842, y: 4.63, z: -0.02564384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -251,11 +251,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb485aa651bc05c4d80d95863f1fb3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 3
-  columns: 5
+  rows: 4
+  columns: 9
   brick: {fileID: -5172616385811604962, guid: f3345ffd7b3589c48af9d9fb0addcfe0, type: 3}
   nbBricksLeft: 0
   origin: {fileID: 1218176341}
   sprites:
-  - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: e10286d42c1f694448e8f56e5eab7944, type: 3}
+  - {fileID: 21300000, guid: d8750257bbd72cb4aad857ba981b8466, type: 3}
+  - {fileID: 21300000, guid: 0d70279ff1611994d97bad13137ec685, type: 3}
+  - {fileID: 21300000, guid: 44b116b75d53ac84cb4166a7ef6ea798, type: 3}
+  - {fileID: 21300000, guid: 7b28640566ce1034488210b3d6352d5b, type: 3}
+  - {fileID: 21300000, guid: f298db0254bb04347ad203459fb56ac3, type: 3}
