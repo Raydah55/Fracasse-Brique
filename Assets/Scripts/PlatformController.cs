@@ -25,7 +25,7 @@ public class PlatformController : MonoBehaviour
         float cameraMax = Camera.main.transform.position.x + (width /2f); 
         float platformMin = transform.position.x - objectWidth/2f;
         float platformMax = transform.position.x + objectWidth/2f;
-        if (!((horizontal < 0 && cameraMin > platformMin + depl.x) || (horizontal > 0 && cameraMax < platformMax + depl.x))){
+        if (!((horizontal < 0 && cameraMin + 0.48f > platformMin + depl.x) || (horizontal > 0 && cameraMax -0.48f < platformMax + depl.x))){
             transform.Translate(Vector3.right * horizontal * Time.deltaTime * speed);
         }
     }
