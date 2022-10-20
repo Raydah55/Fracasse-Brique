@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    private float speed = 4f;
+    [SerializeField] private float speed = 4f;
 
     private void Start()
     {
-        
     }
 
     private void Update()
@@ -19,8 +18,16 @@ public class PlatformController : MonoBehaviour
     private void MovePlatform()
     {
         float horizontal = Input.GetAxis("Horizontal");
-
-        transform.Translate(Vector3.right * horizontal * Time.deltaTime * speed);
+        float width = Camera.main.aspect * Camera.main.orthographicSize * 2.0f;
+        float objectWidth = GetComponent<Collider2D>().bounds.size.x;
+        Vector3 depl = Vector3.right * horizontal * Time.deltaTime * speed;
+        float cameraMin = Camera.main.transform.position.x - (width /2f);
+        float cameraMax = Camera.main.transform.position.x + (width /2f); 
+        float platformMin = transform.position.x - objectWidth/2f;
+        float platformMax = transform.position.x + objectWidth/2f;
+        if (!((horizontal < 0 && cameraMin + 0.48f > platformMin + depl.x) || (horizontal > 0 && cameraMax -0.48f < platformMax + depl.x))){
+            transform.Translate(Vector3.right * horizontal * Time.deltaTime * speed);
+        }
     }
 
     public float Speed {
