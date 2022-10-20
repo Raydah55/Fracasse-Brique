@@ -26,4 +26,8 @@ public class BallController : MonoBehaviour
 
         rb.AddForce(force.normalized * speed);
     }
+
+    public void LaunchBall(){
+        Invoke(nameof(SetRandomTrajectory), 1f);
+    }
 }
