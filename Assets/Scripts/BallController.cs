@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float speed = 500f;
+    private float speed = 300f;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour
     private void SetRandomTrajectory()
     {
         Vector2 force = Vector2.zero;
-        force.x = Random.Range(-0.5f, 0.5f);
+        force.x = Random.Range(-0.75f, 0.75f);
         force.y = -1;
 
         rb.AddForce(force.normalized * speed);
