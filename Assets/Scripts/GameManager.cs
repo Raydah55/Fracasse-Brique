@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject spawn;
     public GameObject ball;
     public float delayReload = 1f;
+    public GameObject pause;
+    private bool isInPause = false;
 
     [SerializeField] private int health = 1;
     [SerializeField] private string sceneName;
@@ -76,6 +78,9 @@ public class GameManager : MonoBehaviour
             startReloading = true;
             StartCoroutine(ReloadLevel());
         }
+        if(Input.GetKeyDown("escape")){
+            Pause(!isInPause);
+        }
     }
 
     IEnumerator ReloadLevel(){
@@ -101,4 +106,16 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(string scene){
         SceneManager.LoadScene(scene);
     }
+
+    public void Pause(bool inPause){
+        isInPause = inPause;
+        pause.SetActive(inPause);
+        if (inPause){
+            Time.timeScale = 0;
+            
+        } else {
+            Time.timeScale = 1;
+        }
+    }
+
 }
