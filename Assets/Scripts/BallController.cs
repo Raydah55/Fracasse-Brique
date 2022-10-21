@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float speed = 300f;
+    [SerializeField] private float speedRotation = 18f;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class BallController : MonoBehaviour
 
     private void Update()
     {
-        
+        transform.Rotate(new Vector3(0f,0f,speedRotation * Time.deltaTime));
     }
 
     private void SetRandomTrajectory()

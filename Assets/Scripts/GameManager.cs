@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
 
     public void RemoveBrick(){
         nbBricksLeft--;
+        if (nbBricksLeft <= 5){
+            AudioManager.instance.Stop("music");
+            AudioManager.instance.Play("lowlife");
+        }
     }
 
     public void ResetNbBricksLeft(){
@@ -76,6 +80,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ReloadLevel(){
         yield return  new WaitForSeconds(delayReload);
+        AudioManager.instance.Stop("lowlife");
+        AudioManager.instance.Stop("music");
+        AudioManager.instance.Play("music");
         ball.transform.position = spawn.transform.position;
         ball.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         ball.GetComponent<BallController>().LaunchBall();
@@ -87,7 +94,11 @@ public class GameManager : MonoBehaviour
     public void PlayerDie(){
         health = health - 1;
         if(health <= 0){
-            SceneManager.LoadScene(sceneName);
+            ChangeScene(sceneName);
         }
+    }
+
+    public void ChangeScene(string scene){
+        SceneManager.LoadScene(scene);
     }
 }
