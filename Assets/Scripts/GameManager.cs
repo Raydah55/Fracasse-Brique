@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
         }    
     }
 
+    void Start(){
+        scoreText.SetText(""+score);
+    }
     
     public int GetScore(){
         return score;
