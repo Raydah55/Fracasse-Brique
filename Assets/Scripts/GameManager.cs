@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveBrick(){
         nbBricksLeft--;
-        if (nbBricksLeft <= 5){
+        if (nbBricksLeft <= 10){
             AudioManager.instance.Stop("music");
             AudioManager.instance.Play("lowlife");
         }
