@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,11 @@ public class GameManager : MonoBehaviour
     public GameObject spawn;
     public GameObject ball;
     public float delayReload = 1f;
+    public GameObject pause;
+    private bool isInPause = false;
 
+    [SerializeField] private int health = 1;
+    [SerializeField] private string sceneName;
     private int score = 0;
     private static GameManager instance;
     private int nbBricksLeft;
@@ -31,6 +36,9 @@ public class GameManager : MonoBehaviour
         }    
     }
 
+    void Start(){
+        scoreText.SetText(""+score);
+    }
     
     public int GetScore(){
         return score;
@@ -47,6 +55,10 @@ public class GameManager : MonoBehaviour
 
     public void RemoveBrick(){
         nbBricksLeft--;
+        if (nbBricksLeft <= 5){
+            AudioManager.instance.Stop("music");
+            AudioManager.instance.Play("lowlife");
+        }
     }
 
     public void ResetNbBricksLeft(){
@@ -66,10 +78,16 @@ public class GameManager : MonoBehaviour
             startReloading = true;
             StartCoroutine(ReloadLevel());
         }
+        if(Input.GetKeyDown("escape")){
+            Pause(!isInPause);
+        }
     }
 
     IEnumerator ReloadLevel(){
         yield return  new WaitForSeconds(delayReload);
+        AudioManager.instance.Stop("lowlife");
+        AudioManager.instance.Stop("music");
+        AudioManager.instance.Play("music");
         ball.transform.position = spawn.transform.position;
         ball.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         ball.GetComponent<BallController>().LaunchBall();
@@ -77,4 +95,27 @@ public class GameManager : MonoBehaviour
         ResetNbBricksLeft();
         startReloading = false;
     }
+
+    public void PlayerDie(){
+        health = health - 1;
+        if(health <= 0){
+            ChangeScene(sceneName);
+        }
+    }
+
+    public void ChangeScene(string scene){
+        SceneManager.LoadScene(scene);
+    }
+
+    public void Pause(bool inPause){
+        isInPause = inPause;
+        pause.SetActive(inPause);
+        if (inPause){
+            Time.timeScale = 0;
+            
+        } else {
+            Time.timeScale = 1;
+        }
+    }
+
 }
