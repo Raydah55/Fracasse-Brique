@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject ball;
     public float delayReload = 1f;
 
+    [SerializeField] private int health = 1;
+    [SerializeField] private string sceneName;
     private int score = 0;
     private static GameManager instance;
     private int nbBricksLeft;
@@ -76,5 +79,12 @@ public class GameManager : MonoBehaviour
         brickManager.LoadBricks();
         ResetNbBricksLeft();
         startReloading = false;
+    }
+
+    public void PlayerDie(){
+        health = health - 1;
+        if(health <= 0){
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
